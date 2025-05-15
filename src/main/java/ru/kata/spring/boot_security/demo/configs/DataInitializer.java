@@ -68,14 +68,16 @@ public class DataInitializer {
 
         List<User> users = userService.findAllUsers();
         for (User user : users) {
-            Set<Role> roles = new HashSet<>();
-            if (user.getUsername().equals("admin")) {
-                roles.add(adminRole);
-            } else {
-                roles.add(userRole);
+            if (user.getUsername().equals("admin") || user.getUsername().equals("user")) {
+                Set<Role> roles = new HashSet<>();
+                if (user.getUsername().equals("admin")) {
+                    roles.add(adminRole);
+                } else {
+                    roles.add(userRole);
+                }
+                user.setRoles(roles);
+                userService.update(user);
             }
-            user.setRoles(roles);
-            userService.update(user);
         }
     }
 } 

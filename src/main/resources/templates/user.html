@@ -49,11 +49,14 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">User</a>
                 </li>
+                <li class="nav-item" th:if="${#strings.contains(user.roles, 'ROLE_ADMIN')}">
+                    <a class="nav-link" th:href="@{/admin}">Admin</a>
+                </li>
             </ul>
         </nav>
 
         <main class="col-md-10 ms-sm-auto px-4 pt-4">
-            <h2 class="mb-4">User information-page</h2>
+            <h2 class="mb-4">User</h2>
             <div class="card">
                 <div class="card-header">
                     About user
